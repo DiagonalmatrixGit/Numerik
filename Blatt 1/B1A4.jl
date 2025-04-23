@@ -13,7 +13,7 @@ end
 
 #Test:
 
-println("Wurzel von S = 1/2:", sqrt(1/2))
+println("Wurzel von S = 1/2: ", sqrt(1/2))
 
 for i in 1:10
     xnull = rand(0.0:100.0)
@@ -21,8 +21,8 @@ for i in 1:10
 
     println("x0: ", xnull)
     println("n: ", num)
-
     println("x_n: ",x_nplus1(xnull, 1/2, num))
+    println("")
 end
 
 
