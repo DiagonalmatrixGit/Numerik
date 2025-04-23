@@ -9,5 +9,5 @@ function x_nplus1(x0::Float64, S::Float64, n::Int)
     end
 end
 
-x_nplus1(2.0, 4.0, 5.0)
+println(x_nplus1(2.0, 6.0, 5))
 
