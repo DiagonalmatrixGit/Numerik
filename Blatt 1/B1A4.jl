@@ -5,14 +5,13 @@ function x_nplus1(x0::Float64, S::Float64, n::Int)
         return x0
     else
         k = x_nplus1(x0, S, n - 1)
-        return (k + S / k) / 2
+        return (k + S/k)/ 2
     end
 end
 
 
 
 #Test:
-
 
 println("Wurzel von S = 1/2:", sqrt(1/2))
 
