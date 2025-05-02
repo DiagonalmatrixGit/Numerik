@@ -1,7 +1,4 @@
-#Nur zu Begin:
-#import Pkg
-#Pkg.add("Plots")
-
+#import Pkg;Pkg.activate("C:\\Users\\barth\\OneDrive\\Bilder\\Dokumente\\GitHub\\Numerik\\Blatt 2 - Barth - Schmitt - Idelberger\\Aufgabe 2");Pkg.instantiate(); Pkg.add("Plots")
 
 using Plots
 
@@ -41,7 +38,7 @@ y5 = [bernstein(fx, 5, xi) for xi in x]
 plot(x,[y1,y2,y3,y4,y5])
 plot!(x,fx.(x),label="f(x)", ls=:dot)
 
-savefig("C:\\Users\\barth\\OneDrive\\Bilder\\Dokumente\\GitHub\\Numerik\\Blatt 2\\fx.png")
+#savefig("C:\\Users\\barth\\OneDrive\\Bilder\\Dokumente\\GitHub\\Numerik\\Blatt 2 - Barth - Schmitt - Idelberger\\Aufgabe 2\\fx.png")
 
 
 #Für g(x):
@@ -55,7 +52,7 @@ y5 = [bernstein(gx, 5, xi) for xi in x]
 plot(x,[y1,y2,y3,y4,y5])
 plot!(x,gx.(x),label="g(x)", ls=:dot)
 
-savefig("C:\\Users\\barth\\OneDrive\\Bilder\\Dokumente\\GitHub\\Numerik\\Blatt 2\\gx.png")
+#savefig("C:\\Users\\barth\\OneDrive\\Bilder\\Dokumente\\GitHub\\Numerik\\Blatt 2 - Barth - Schmitt - Idelberger\\Aufgabe 2\\gx.png")
 
 
 #Für g(x):
@@ -69,7 +66,7 @@ y5 = [bernstein(hx, 5, xi) for xi in x]
 plot(x,[y1,y2,y3,y4,y5])
 plot!(x,hx.(x),label="h(x)", ls=:dot)
 
-savefig("C:\\Users\\barth\\OneDrive\\Bilder\\Dokumente\\GitHub\\Numerik\\Blatt 2\\hx.png")
+#savefig("C:\\Users\\barth\\OneDrive\\Bilder\\Dokumente\\GitHub\\Numerik\\Blatt 2 - Barth - Schmitt - Idelberger\\Aufgabe 2\\hx.png")
 
 
 
