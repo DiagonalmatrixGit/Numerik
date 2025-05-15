@@ -72,18 +72,22 @@ end
 
 
 function spline(x_fest::Float64, x::AbstractVector, y::AbstractVector, sig::AbstractVector)
-    n = length(x)
-    s = zeros(n)
     D = deltaX(x)
-    
-    for i in 1:(n-1)                                                                            #Anpassung der Grenze könnte später zu Fehler führen!
-        c2 = (3y[i+1] -3y[i] -2*sig[i]*D[i] -sig[i+1]*D[i]) / (D[i]^2)
-        c3 = (-2y[i+1] +2y[i] +sig[i]*D[i] +sig[i+1]*D[i]) / (D[i]^3)
+    n = length(x)
 
-        s[i]= y[i]+sig[i]*(x_fest-x[i])+ c2 *(x_fest-x[i])^2+ c3 *(x_fest-x[i])^3
+    #Einordnung ins Intervall [x_k, x_k+1]
+    i = findfirst(k -> x[k] <= x_fest < x[k+1], 1:n-1)
+    if i === nothing
+        i = n - 1
     end
-    return s
+
+    d = x_fest - x[i]
+    c2 = (3y[i+1] - 3y[i] - 2*sig[i]*D[i] - sig[i+1]*D[i]) / D[i]^2
+    c3 = (-2y[i+1] + 2y[i] + sig[i]*D[i] + sig[i+1]*D[i]) / D[i]^3
+
+    return y[i] + sig[i]*d + c2*d^2 + c3*d^3
 end
+
 
 #Auswertung
 
@@ -122,18 +126,18 @@ y_dg = dg.(x_dense)
 
 p1= plot(x_dense, y_spline_f, label="Spline f(x)", lw=1)
 plot!(p1, x_dense, y_f, label="Original f(x)", linestyle=:dash, lw=2)
-plot!(p1, title="Spline-Interpolation vs. Original f(x)", xlabel="x", ylabel="y")
+plot!(p1, xlabel="x", ylabel="y")
 
 p2=plot(x_dense, y_spline_g, label="Spline g(x)", lw=1)
 plot!(p2, x_dense, gx.(x_dense), label="Original g(x)", linestyle=:dash, lw=2)
-plot!(p2, title="Spline-Interpolation vs. Original g(x)", xlabel="x", ylabel="y")
+plot!(p2, xlabel="x", ylabel="y")
 
-p3=plot(x_dense, y_df, label="Ableitung f(x)", lw=2)
-plot!(p3, title="Analytische Ableitung von f", xlabel="x", ylabel="f'(x)")
+p3=plot(x_dense, y_df, label="Analytische Ableitung f(x)", lw=2)
+plot!(p3, xlabel="x", ylabel="f'(x)")
 
-p4=plot(x_dense, y_dg, label="Ableitung g(x)", lw=2)
-plot!(p4, title="Analytische Ableitung von g", xlabel="x", ylabel="g'(x)")
+p4=plot(x_dense, y_dg, label="Analytische Ableitung g(x)", lw=2)
+plot!(p4,xlabel="x", ylabel="g'(x)")
 
 
 plot(p1, p2,p3, p4, layout=(2,2), size=(1000,1000))
-savefig(@__DIR__)
+savefig(joinpath(@__DIR__, "Eregbnis.png"))
