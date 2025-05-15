@@ -35,7 +35,7 @@ end
 function MatrixA(x::AbstractVector)
     n = length(x)
     A = zeros(n, n)
-    
+
     D = deltaX(x)
 
     #Randbedingungen
@@ -70,8 +70,6 @@ end
 
 
 
-
-
 A = MatrixA(xGitter)
 b_f = Vektor_b(xGitter, y_f)
 b_g = Vektor_b(xGitter, y_g)
@@ -79,11 +77,13 @@ b_g = Vektor_b(xGitter, y_g)
 
 prob = LinearProblem(A, b_f)
 sol = solve(prob)
-println("Auswertung für f(x): ",sol.u)  
+sigma = sol.u
+println("Auswertung für f(x): ",sigma)  
 
 prob = LinearProblem(A, b_g)
 sol = solve(prob)
-println("Auswertung für g(x): ",sol.u)  
+sigma = sol.u
+println("Auswertung für g(x): ",sigma)  
 
 
 

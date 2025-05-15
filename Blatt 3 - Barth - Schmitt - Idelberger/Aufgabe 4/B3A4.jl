@@ -7,16 +7,9 @@ using Interpolations
 
 
 
-
 function Runge(x)
     return 1/(1+25*x^2)
 end
-
-function Diskr(N)
-    return collect(range(-1, 1, N))
-end
-
-
 
 
 
@@ -25,7 +18,7 @@ end
 N=10
 
 
-x = Diskr(N)
+x = collect(range(-1, 1, N))
 y = Runge.(x)
 
 
@@ -43,7 +36,5 @@ plot(x, y, label="Runge-Funktion", lw=2)
 scatter!(x_mid, y_mid_spline, label="Spline an Mittelpunkten", color=:red)
 plot!(x_mid, y_mid_true, label="Wahre Werte an Mittelpunkten", linestyle=:dash)
 
-# Fehleranalyse
-errors = abs.(y_mid_true .- y_mid_spline)
-println("Maximaler Fehler an Mittelpunkten: ", maximum(errors))
+
 
