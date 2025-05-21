@@ -1,4 +1,4 @@
-using Pkg; Pkg.instantiate(); Pkg.activate(@__DIR__); Pkg.add("Plots"); 
+#using Pkg; Pkg.instantiate(); Pkg.activate(@__DIR__); Pkg.add("Plots"); 
 using LinearAlgebra
 
 function thomas_algorithm(l_eingabe, d_eingabe, u_eingabe, b_eingabe)
@@ -30,24 +30,25 @@ end
 
 # Testdaten
 n = 10
-l = fill(-1.0, n-1)          # untere Diagonale
-d = fill(2.0, n)             # Hauptdiagonale
-u = fill(-1.0, n-1)          # obere Diagonale
-x_exact = collect(1.0:n)     # wahre Lösung
+l = fill(-1.0, n-1)          
+d = fill(2.0, n)             
+u = fill(-1.0, n-1)          
+x_exact = collect(1.0:n)     
 
-# Tridiagonale Matrix explizit für Vergleich
 
 A = Tridiagonal(l, d, u)
-b = A * x_exact              # Rechte Seite berechnen
+b = A *x_exact              
 
-# Thomas-Algorithmus anwenden
-x_thomas = thomas_algorithm(l, d, u, b)
 
-# Vergleich mit Julia-Standardlösung
-x_std = A \ b
+thomas = thomas_algorithm(l, d, u, b)
 
-println("Lösung Thomas: ", x_thomas)
-println("Lösung Standard: ", x_std)
-println("Fehler Thomas vs exakt: ", norm(x_thomas - x_exact))
-println("Fehler Standard vs exakt: ", norm(x_std - x_exact))
+
+std = A \ b
+
+println("Lösung Thomas: ", thomas)
+println("Lösung Standard: ", std)
+println("Fehler Thomas vs exakt: ", norm(thomas - x_exact))
+println("Fehler Standard vs exakt: ", norm(std - x_exact))
+
+println("Auswertung: Die Abweichung des Thosmasalgorithmus ist kleiner! Beide sind im Bereich e-15 also ist die Abweichung generell sehr gering.")
 
