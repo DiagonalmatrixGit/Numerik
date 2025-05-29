@@ -61,7 +61,6 @@ end
 
 
 gitter = [5, 10 ,15, 20]
-println(gitter)
 
 f1 = [Fehler(SimpsonQuad, f, gi) for gi in gitter]
 f2 = [Fehler(SimpsonQuad, g, gi) for gi in gitter]
@@ -72,7 +71,6 @@ f6 = [Fehler(BoolQuad, h, gi) for gi in gitter]
 
 t = Table(N = gitter, Fehler_Simpson_von_f = f1, Fehler_Bool_von_f = f4, Fehler_Simpson_von_g = f2, Fehler_Bool_von_g = f5, Fehler_Simpson_von_h = f3, Fehler_Bool_von_h = f6)
 display(t)
-
 
 
 
