@@ -23,7 +23,7 @@ end
 
 
 function Simpson(a, b, N, phi0)
-    
+    @assert N % 2 == 0              #überprüft, dass N durch 2 teilbar ist.
     #(a)
     h = (b-a)/N
     xk = [(a + k*h) for k in 0:N]  #xk hat N+1 Punkte, da man bei k =0 anfängt und bei k=N aufhört, sodass die randwerte a und b sind.
@@ -43,8 +43,7 @@ end
 
 
 
-
-
+#Test für phi_0 elt [0,2pi]
 
 gitter = collect(range(0, 2*pi, 10))
 
